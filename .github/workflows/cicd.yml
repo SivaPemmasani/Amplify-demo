@@ -53,7 +53,7 @@ jobs:
           --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" \
           --yes
 
-        amplify hosting add
+        #amplify hosting add
         amplify publish --invalidateCloudFront --yes
 
     
