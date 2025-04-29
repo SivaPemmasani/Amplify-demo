@@ -39,6 +39,7 @@ jobs:
 
     - name: build & deploy
       run: |
+        #amplify pull --appId "d9s1mky11awjh" --amplify "{\"envName\":\"dev\"}" --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" --providers "{\"awscloudformation\":{\"configLevel\":\"general\"}}" --yes
         amplify pull --appId "d9s1mky11awjh" --amplify "{\"envName\":\"dev\"}" --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" --providers "{\"awscloudformation\":{\"configLevel\":\"general\"}}" --yes
         amplify hosting add
         amplify publish --invalidateCloudFront --yes
