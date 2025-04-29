@@ -42,7 +42,6 @@ jobs:
         #amplify pull --appId "d9s1mky11awjh" --amplify "{\"envName\":\"dev\"}" --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" --providers "{\"awscloudformation\":{\"configLevel\":\"general\"}}" --yes
         
         #amplify pull --appId "d9s1mky11awjh" --amplify "{\"envName\":\"dev\"}" --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" --providers "{\"awscloudformation\":{\"configLevel\":\"general\"}}" --yes
-            - name: build & deploy
     
         # Try pulling the environment; if it doesn't exist, initialize it
         amplify pull --appId "d9s1mky11awjh" --amplify "{\"envName\":\"dev\"}" \
