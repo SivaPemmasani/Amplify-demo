@@ -40,7 +40,20 @@ jobs:
     - name: build & deploy
       run: |
         #amplify pull --appId "d9s1mky11awjh" --amplify "{\"envName\":\"dev\"}" --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" --providers "{\"awscloudformation\":{\"configLevel\":\"general\"}}" --yes
-        amplify pull --appId "d9s1mky11awjh" --amplify "{\"envName\":\"dev\"}" --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" --providers "{\"awscloudformation\":{\"configLevel\":\"general\"}}" --yes
+        
+        #amplify pull --appId "d9s1mky11awjh" --amplify "{\"envName\":\"dev\"}" --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" --providers "{\"awscloudformation\":{\"configLevel\":\"general\"}}" --yes
+            - name: build & deploy
+    
+        # Try pulling the environment; if it doesn't exist, initialize it
+        amplify pull --appId "d9s1mky11awjh" --amplify "{\"envName\":\"dev\"}" \
+          --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" \
+          --providers "{\"awscloudformation\":{\"configLevel\":\"general\",\"useProfile\":false,\"accessKeyId\":\"${{ secrets.AWS_ACCESS_KEY_ID }}\",\"secretAccessKey\":\"${{ secrets.AWS_SECRET_ACCESS_KEY }}\",\"region\":\"us-east-1\"}}" \
+          --yes || \
+        amplify init --amplify "{\"appId\":\"d9s1mky11awjh\",\"envName\":\"dev\"}" \
+          --providers "{\"awscloudformation\":{\"configLevel\":\"general\",\"useProfile\":false,\"accessKeyId\":\"${{ secrets.AWS_ACCESS_KEY_ID }}\",\"secretAccessKey\":\"${{ secrets.AWS_SECRET_ACCESS_KEY }}\",\"region\":\"us-east-1\"}}" \
+          --frontend "{\"frontend\":\"javascript\",\"framework\":\"react\",\"config\":{\"SourceDir\":\"src\",\"DistributionDir\":\"build\",\"BuildCommand\":\"npm run-script build\",\"StartCommand\":\"npm run-script start\"}}" \
+          --yes
+
         amplify hosting add
         amplify publish --invalidateCloudFront --yes
 
